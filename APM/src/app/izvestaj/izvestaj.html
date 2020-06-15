@@ -1,0 +1,36 @@
+<div class='card'>
+    <div class='card-body'>
+        <h2 style="margin-top: 70px;">Izaberi vrstu izvestaja:</h2>
+        <div><select name="a" #a="ngModel" [(ngModel)]='izabranaVstaIzvestaja'>
+            <option *ngFor='let tipIzvestaja of tipovi' [ngValue]="tipIzvestaja">{{tipIzvestaja}}</option>
+          </select>
+    </div>
+<button style="margin-bottom: 100px;" class="btn btn-info" (click)='sortiraj(izabranaVstaIzvestaja)'>Sortiraj</button>
+
+</div>
+
+    <h2 style="margin-top: 70px;">Izvestaj:</h2>
+    <div class="listaCASertifikata">
+      <div class='table-responsive'>
+        <table class='table' *ngIf='vozila'>
+          <thead>
+            <tr>
+              <th>Marka</th>
+              <th>Model</th>
+              <th *ngIf='boolKilometri'>Predjena kilometraza</th>
+              <th *ngIf='boolKomentar'>Broj komentara</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let vozilo of vozila'>
+              <td>{{vozilo.markaAutomobila}}</td>
+              <td>{{vozilo.modelAutomobila}}</td>
+              <td *ngIf='boolKilometri'>{{ vozilo.predjenaKilometraza }}</td>
+              <td *ngIf='boolKomentar'>{{vozilo.brojKomentara}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+      </div>
+ 
