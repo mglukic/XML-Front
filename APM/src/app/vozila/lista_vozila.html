@@ -1,0 +1,23 @@
+<div class='table-responsive'>
+    <table class='table'
+          *ngIf='vozila && vozila.length'>
+      <thead>
+        <tr>
+          <th>Marka Automobila</th>
+          <th>Model Automobila</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor='let vozilo of vozila'>
+         <!--     <td><a [routerLink]="['/products', product.productId]">{{product.productName}}</a></td>
+              <td>{{product.productCode | lowercase | convertToSpaces:'-'}}</td>
+              <td>{{product.releaseDate}}</td>
+              <td>{{product.price | currency:'USD':'symbol':'1.2-2'}}</td>
+              <td><pm-star [rating] = 'product.starRating'
+                      (ratingClicked) = 'onRatingClicked($event)'></pm-star></td>-->
+                      <td><a [routerLink]="['/listaVozila',vozilo.id]">{{vozilo.markaAutomobila}}</a></td>
+                      <td>{{vozilo.modelAutomobila}}</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
