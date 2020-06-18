@@ -1,0 +1,31 @@
+<div class='card-body'>
+    <div class='row'>
+        <div class='col-md-8'>
+            <div class='row'>
+                <div class='col-md-4'><b>Naziv:</b></div>
+                <div class='col-md-8'>{{cenovnik.naziv}}</div>
+            </div>
+            <div class='row'>
+                <div class='col-md-4'><b>Cena po danu:</b></div>
+                <div class='col-md-8'>{{cenovnik.cenaDan}}</div>
+            </div>
+            <div class='row'>
+                <div class='col-md-4'><b>Cena po prekoracenom km:</b></div>
+                <div class='col-md-8'>{{cenovnik.cenaPrekoraceniKm}}</div>
+            </div>
+            <div class='row'>
+                <div class='col-md-4'><b>Cena za CDW:</b></div>
+                <div class='col-md-8'>{{cenovnik.cenaCDW}}</div>
+            </div>
+            <div class='row'>
+                <div class='col-md-4'><b>Popust u procentima za vise od 30 dana:</b> u procentima za vise od 30 dana:</div>
+                <div class='col-md-8'>{{cenovnik.popustProcenat}}</div>
+            </div>
+
+            <div class='row'>
+                <button class='btn btn-info' (click)='obrisi()'>Obrisi cenovnik</button>
+            </div>
+
+        </div>
+    </div>
+</div>

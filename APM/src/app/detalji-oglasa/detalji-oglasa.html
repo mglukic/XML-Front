@@ -1,98 +1,95 @@
+<div class='card-body'>
+  <div class='row'>
+    <div class='col-md-8'>
+      <div class='row'>
+        <div class='col-md-4'>Marka:</div>
+        <div class='col-md-8'>{{vozilo.markaAutomobila}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'>Model:</div>
+        <div class='col-md-8'>{{vozilo.modelAutomobila}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'>Klasa automobila:</div>
+        <div class='col-md-8'>{{vozilo.klasaAutomobila}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'>Ukupno predjeno:</div>
+        <div class='col-md-8'>{{vozilo.predjenaKilometraza}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'>Planirano za preci:</div>
+        <div class='col-md-8'>{{vozilo.planiranoZaPreci}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'>Tip menjaca:</div>
+        <div class='col-md-8'>{{vozilo.menjac}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'>Tip goriva:</div>
+        <div class='col-md-8'>{{vozilo.gorivo}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'>Broj sedista za decu:</div>
+        <div class='col-md-8'>{{vozilo.brojSedistaZaDecu}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'>Mesto odakle se preuzima auto:</div>
+        <div class='col-md-8'>{{vozilo.mesto}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'>Cena po danu:</div>
+        <div class='col-md-8'>{{vozilo.cena}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'>Poseduje CWD:</div>
+        <div class='col-md-8'>{{vozilo.cwd}}</div>
+      </div>
 
-  <div class='card-body'>
-    <div class='row'>
-      <div class='col-md-8'>
-        <div class='row'>
-          <div class='col-md-4'>Marka:</div>
-          <div class='col-md-8'>{{vozilo.markaAutomobila}}</div>
-        </div>
-        <div class='row'>
-          <div class='col-md-4'>Model:</div>
-          <div class='col-md-8'>{{vozilo.modelAutomobila}}</div>
-        </div>
-        <div class='row'>
-          <div class='col-md-4'>Klasa automobila:</div>
-          <div class='col-md-8'>{{vozilo.klasaAutomobila}}</div>
-        </div>
-        <div class='row'>
-          <div class='col-md-4'>Ukupno predjeno:</div>
-          <div class='col-md-8'>{{vozilo.predjenaKilometraza}}</div>
-        </div>
-        <div class='row'>
-          <div class='col-md-4'>Planirano za preci:</div>
-          <div class='col-md-8'>{{vozilo.planiranoZaPreci}}</div>
-        </div>
-        <div class='row'>
-          <div class='col-md-4'>Tip menjaca:</div>
-          <div class='col-md-8'>{{vozilo.menjac}}</div>
-        </div>
-        <div class='row'>
-            <div class='col-md-4'>Tip goriva:</div>
-            <div class='col-md-8'>{{vozilo.gorivo}}</div>
-          </div>
-          <div class='row'>
-            <div class='col-md-4'>Broj sedista za decu:</div>
-            <div class='col-md-8'>{{vozilo.brojSedistaZaDecu}}</div>
-          </div>
-          <div class='row'>
-            <div class='col-md-4'>Mesto odakle se preuzima auto:</div>
-            <div class='col-md-8'>{{vozilo.mesto}}</div>
-          </div>
-          <div class='row'>
-            <div class='col-md-4'>Cena po danu:</div>
-            <div class='col-md-8'>{{vozilo.cena}}</div>
-          </div>
-          <div class='row'>
-            <div class='col-md-4'>Poseduje CWD:</div>
-            <div class='col-md-8'>{{vozilo.cwd}}</div>
-          </div>
+      <div class="container row">
+        <div class="col-md-12">
           
-    
+          <img [src]="retrievedImage">
+        </div>
+      </div>
+      
     </div>
-    </div>
+  </div>
 </div>
 
 <div class='card-footer'>
-    <button class='btn btn-outline-secondary'
-            (click)='prikaziKomentare()'
-            style='width:80px'>
-      <i class='fa fa-chevron-left'></i> Komentari
-    </button>
+  <button class='btn btn-outline-secondary' (click)='prikaziKomentare()' style='width:80px'>
+    <i class='fa fa-chevron-left'></i> Komentari
+  </button>
 </div>
 <div *ngIf='prikazanKomentre'>
-    <div class='card-body' >
-        <div class='row' *ngFor='let k of komentari'>
-            <div class='col-md-4'>{{k.komentar}}</div>
-        </div>
+  <div class='card-body'>
+    <div class='row' *ngFor='let k of komentari'>
+      <div class='col-md-4'>{{k.komentar}}</div>
     </div>
-    <div>Dodaj komentar</div>
-    <input type="text" [(ngModel)]='tekstKomentar'>
-    <button class='btn btn-outline-secondary'
-            (click)='kometarDodaj()'>Dodaj</button>
+  </div>
+  <div>Dodaj komentar</div>
+  <input type="text" [(ngModel)]='tekstKomentar'>
+  <button class='btn btn-outline-secondary' (click)='kometarDodaj()'>Dodaj</button>
 
-        </div>
+</div>
 
-        <div class='card-footer'>
-          <button class='btn btn-outline-secondary'
-                  (click)='prikaziRezervaciju()'
-                  style='width:80px'>
-            <i class='fa fa-chevron-left'></i> Rezervisi Vozilo
-          </button>
-        </div>
+<div class='card-footer'>
+  <button class='btn btn-outline-secondary' (click)='prikaziRezervaciju()' style='width:80px'>
+    <i class='fa fa-chevron-left'></i> Rezervisi Vozilo
+  </button>
+</div>
 
-        <div *ngIf='zauzmiVozilo'>
-          <div>Zauzmi vozilo</div>
-          <input type="date" [(ngModel)]='zauzmiOd'>
-          <input type="date" [(ngModel)]='zauzmiDo'>
-          <button class='btn btn-outline-secondary'
-                  (click)='rezervisi()'>Rezervisi</button>
-      
-              </div>
+<div *ngIf='zauzmiVozilo'>
+  <div>Zauzmi vozilo</div>
+  <input type="date" [(ngModel)]='zauzmiOd'>
+  <input type="date" [(ngModel)]='zauzmiDo'>
+  <button class='btn btn-outline-secondary' (click)='rezervisi()'>Rezervisi</button>
 
-  <div class='card-footer'>
-    <button class='btn btn-outline-secondary'
-            (click)='onBack()'
-            style='width:80px'>
-      <i class='fa fa-chevron-left'></i> Back
-    </button>
+</div>
+
+<div class='card-footer'>
+  <button class='btn btn-outline-secondary' (click)='onBack()' style='width:80px'>
+    <i class='fa fa-chevron-left'></i> Back
+  </button>
 </div>
