@@ -1,0 +1,39 @@
+<div class='card'>
+    <div class='card-body'>
+        <h1>Napravi novi oglas</h1>
+        <form (ngSubmit)="napraviCenovnik()" #pacijentForm="ngForm">
+            <table>
+                
+                <tr>
+                    <td>Naziv:</td>
+                    <td><input type="text" name="Naziv" #CN="ngModel" [(ngModel)]="cenovnik.naziv"> </td>
+                </tr>
+            
+                <tr>
+                    <td>Cena po danu:</td>
+                    <td><input type="number" name="CenaDan" #Cena="ngModel" [(ngModel)]="cenovnik.cenaDan"> </td>
+                </tr>
+                
+
+                <tr>
+                    <td>Cena po prekoracenom kilometru:</td>
+                    <td><input type="number" name="CenaKM" #Cena="ngModel" [(ngModel)]="cenovnik.cenaPrekoraceniKm"> </td>
+                </tr>
+                <tr>
+                    <td>Cena za CDW:</td>
+                    <td><input type="number" name="CenaCDW" #Cena="ngModel" [(ngModel)]="cenovnik.cenaCDW"> </td>
+                </tr>
+                <tr>
+                    <td>Popust u procentima za vise od 30 dana iznajmljivanja:</td>
+                    <td><input type="number" name="PopustProcenat" #Cena="ngModel" [(ngModel)]="cenovnik.popustProcenat"> </td>
+                </tr>
+
+
+
+                <tr>
+                    <td><input type="submit" class="btn btn-info" value="Dodaj"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

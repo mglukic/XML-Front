@@ -1,121 +1,131 @@
 <div class='card'>
     <div class='card-body'>
-    <h1>Napravi novi oglas</h1>
-    <form (ngSubmit)="napraviOglas()" #pacijentForm="ngForm">
-        <table>
-            <h3>Slika</h3>
- 
-            
+        <h1>Napravi novi oglas</h1>
+        <form (ngSubmit)="napraviOglas()" #pacijentForm="ngForm">
+            <table>
+                <h3>Slika</h3>
+
+                <!--
             <div>
                 <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180">
             </div>
+
             <input type="file" name="imgs" multiple (change)="detectFiles($event)">
-     
-            <tr>
-                <td>Zuzeto od</td>
-                    <td><input type="date" name="ZauzetoOd" #ZauzetoOd="ngModel" [(ngModel)] = "vozilo.zauzetoOd"> </td>
-            </tr>
+            <img [src]="selectedFile" class="rounded mb-3" width="200">-->
+                <input type="file" (change)="onFileChanged($event)">
 
-            <tr>
-                <td>Zuzeto do</td>
-                    <td><input type="date" name="ZauzetoDo" #ZauzetoDo="ngModel" [(ngModel)] = "vozilo.zauzetoDo"> </td>
-            </tr>
+                <tr>
+                    <td>Pocetak oglasa od</td>
+                    <td><input type="date" name="ZauzetoOd" #ZauzetoOd="ngModel" [(ngModel)]="vozilo.zauzetoOd"> </td>
+                </tr>
+
+                <tr>
+                    <td>Kraj oglasa do</td>
+                    <td><input type="date" name="ZauzetoDo" #ZauzetoDo="ngModel" [(ngModel)]="vozilo.zauzetoDo"> </td>
+                </tr>
 
 
-            <tr>
-                <td>Mesto</td>
-                    <td><input type="text" name="Mesto" #CN="ngModel" [(ngModel)] = "vozilo.mesto"> </td>
+                <tr>
+                    <td>Mesto</td>
+                    <td><input type="text" name="Mesto" #CN="ngModel" [(ngModel)]="vozilo.mesto"> </td>
                 </tr>
                 <tr>
-                <td>Marka Automobila</td>
+                    <td>Marka Automobila</td>
                     <td>
-                        <select name="MarkaAutomobila"  #MarkaAutomobila="ngModel" [(ngModel)] = "vozilo.markaAutomobila">
+                        <select name="MarkaAutomobila" #MarkaAutomobila="ngModel" [(ngModel)]="vozilo.markaAutomobila">
                             <!-- <option *ngFor='let tip of tipoviKlinike'>{{ tip.nazivTipa }}</option> -->
-                            <option >BMW </option>
-                            <option >Audi </option>
-                            <option >Mercedes </option>
-                            <option >Golf </option>
-                            <option >Zastava </option>
-                            <option >Tesla </option>
-                            <option >Renault </option>
-                            <option >Citroen </option>
-                            <option >Peugeot </option>
-                            <option >Ford </option>
-                            <option >Opel </option>
-                            <option >Nisan </option>
-                            <option >Honda </option>
+                            <option>BMW </option>
+                            <option>Audi </option>
+                            <option>Mercedes </option>
+                            <option>Golf </option>
+                            <option>Zastava </option>
+                            <option>Tesla </option>
+                            <option>Renault </option>
+                            <option>Citroen </option>
+                            <option>Peugeot </option>
+                            <option>Ford </option>
+                            <option>Opel </option>
+                            <option>Nisan </option>
+                            <option>Honda </option>
 
-                            </select>
-                            </td>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
-                <td>Model Automobila</td>
-                    <td><input type="text" name="ModelAutomobila" #ModelAutomobila="ngModel"[(ngModel)] = "vozilo.modelAutomobila"> </td>
+                    <td>Model Automobila</td>
+                    <td><input type="text" name="ModelAutomobila" #ModelAutomobila="ngModel"
+                            [(ngModel)]="vozilo.modelAutomobila"> </td>
                 </tr>
                 <tr>
                     <td>Tip Menjaca</td>
                     <td>
-                        <select name="TipMenjaca"  #TipMenjaca="ngModel" [(ngModel)] = "vozilo.menjac">
-                        <!-- <option *ngFor='let tip of tipoviKlinike'>{{ tip.nazivTipa }}</option> -->
-                        <option >manuelni </option>
-                        <option >automatski </option>
-                        <option >poluautomatski </option>
+                        <select name="TipMenjaca" #TipMenjaca="ngModel" [(ngModel)]="vozilo.menjac">
+                            <!-- <option *ngFor='let cenovnik of cenovnici'>{{ cenovnik.naziv }}</option> -->
+                            <option>manuelni </option>
+                            <option>automatski </option>
+                            <option>poluautomatski </option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Tip Goriva</td>
                     <td>
-                        <select name="TipGoriva"  #TipGoriva="ngModel" [(ngModel)] = "vozilo.gorivo">
-                        <!-- <option *ngFor='let tip of tipoviKlinike'>{{ tip.nazivTipa }}</option> -->
-                        <option >benzin </option>
-                        <option >plin </option>
-                        <option >dizel </option>
+                        <select name="TipGoriva" #TipGoriva="ngModel" [(ngModel)]="vozilo.gorivo">
+                            <!-- <option *ngFor='let tip of tipoviKlinike'>{{ tip.nazivTipa }}</option> -->
+                            <option>benzin </option>
+                            <option>plin </option>
+                            <option>dizel </option>
                         </select>
                     </td>
                 </tr>
 
-                 <tr>
+                <tr>
                     <td>Klasa Automobila</td>
                     <td>
-                        <select name="KlasaAutomobila"  #KlasaAutomobila="ngModel" [(ngModel)] = "vozilo.klasaAutomobila">
-                        <!-- <option *ngFor='let tip of tipoviKlinike'>{{ tip.nazivTipa }}</option> -->
-                        <option >SUV </option>
-                        <option >old tajmer </option>
-                        <option >gradski auto </option>
+                        <select name="KlasaAutomobila" #KlasaAutomobila="ngModel" [(ngModel)]="vozilo.klasaAutomobila">
+                            <!-- <option *ngFor='let tip of tipoviKlinike'>{{ tip.nazivTipa }}</option> -->
+                            <option>SUV </option>
+                            <option>old tajmer </option>
+                            <option>gradski auto </option>
                         </select>
                     </td>
                 </tr>
 
                 <tr>
                     <td>Cena</td>
-                        <td><input type="number" name="Cena" #Cena="ngModel" [(ngModel)] = "vozilo.cena"> </td>
-                    </tr>
-                    <tr>
-                        <td>Predjena Kilometraza</td>
-                            <td><input type="number" name="PredjenaKilometraza" #PredjenaKilometraza="ngModel" [(ngModel)] = "vozilo.predjenaKilometraza"> </td>
-                        </tr>
-                        <tr>
-                            <td>Planirano Za Preci</td>
-                                <td><input type="text" name="PlaniranoZaPreci" #PlaniranoZaPreci="ngModel" [(ngModel)] = "vozilo.planiranoZaPreci"> </td>
-                            </tr>
-                
-                            <tr>
-                                <td>CWD</td>
-                                    <td><input type="checkbox" name="CWD" #CWD="ngModel" [(ngModel)] = "vozilo.cwd"> </td>
-                                </tr>
-                                <tr>
-                                    <td>Broj sedista za decu</td>
-                                        <td><input type="number" name="BrojSedistaZaDecu" #BrojSedistaZaDecu="ngModel" [(ngModel)] = "vozilo.brojSedistaZaDecu"> </td>
-                                    </tr>
-                                    
+                    <td>
+                        <select name="Cena" #Cena="ngModel" [(ngModel)]="vozilo.cena">
+                            <option *ngFor='let c of cenovnici'>{{ c.naziv }}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Predjena Kilometraza</td>
+                    <td><input type="number" name="PredjenaKilometraza" #PredjenaKilometraza="ngModel"
+                            [(ngModel)]="vozilo.predjenaKilometraza"> </td>
+                </tr>
+                <tr>
+                    <td>Planirano Za Preci</td>
+                    <td><input type="text" name="PlaniranoZaPreci" #PlaniranoZaPreci="ngModel"
+                            [(ngModel)]="vozilo.planiranoZaPreci"> </td>
+                </tr>
+
+                <tr>
+                    <td>CWD</td>
+                    <td><input type="checkbox" name="CWD" #CWD="ngModel" [(ngModel)]="vozilo.cwd"> </td>
+                </tr>
+                <tr>
+                    <td>Broj sedista za decu</td>
+                    <td><input type="number" name="BrojSedistaZaDecu" #BrojSedistaZaDecu="ngModel"
+                            [(ngModel)]="vozilo.brojSedistaZaDecu"> </td>
+                </tr>
 
 
-                            <tr>
-                            <td><input type="submit" class="btn btn-info" value="Confirm"></td>
-                                </tr>
-        </table>
-    </form>
+
+                <tr>
+                    <td><input type="submit" class="btn btn-info" value="Confirm"></td>
+                </tr>
+            </table>
+        </form>
     </div>
 </div>
-
