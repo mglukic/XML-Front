@@ -9,7 +9,7 @@ export class Vozilo{
     gorivo:string;
     menjac:string;
     klasaAutomobila:string;
-    cena:number;
+    cena:string;
     predjenaKilometraza:number;
     planiranoZaPreci:string;
     cwd:boolean;
