@@ -86,7 +86,7 @@ export class DetaljiOglasaComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
 
-    this.httpClient.get('http://localhost:8090/api/vozilo/getImage/' + this.id)
+    this.httpClient.get('https://localhost:8443/api/vozilo/getImage/' + this.id)
       .subscribe(
         res => {
           this.retrieveResonse = res;

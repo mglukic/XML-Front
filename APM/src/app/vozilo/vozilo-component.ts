@@ -75,7 +75,7 @@ export class VoziloComponent implements OnInit{
       console.log(this.selectedFile);
       uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name.concat("_vozilo" + this.vozilo.id.toString(10)));
       console.log(this.selectedFile);
-      this.httpClient.post('http://localhost:8090/api/vozilo/upload', uploadImageData, { observe: 'response' })
+      this.httpClient.post('https://localhost:8443/api/vozilo/upload', uploadImageData, { observe: 'response' })
 
         .subscribe((response) => {
 
