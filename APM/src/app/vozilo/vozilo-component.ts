@@ -59,7 +59,10 @@ export class VoziloComponent implements OnInit{
 
   napraviOglas() {
     
+    console.log("Pravi vozilo::" + this.vozilo)
 
+    this.vozilo.iznajmljivacId = 1;
+    this.vozilo.iznajmljivacMail = "agent@gmail.com";
 
     this.voziloService.sacuvajVozilo(this.vozilo).subscribe(vozilo => {
       this.vozilo = vozilo;
