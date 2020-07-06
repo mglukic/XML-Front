@@ -9,10 +9,14 @@ export class Vozilo{
     gorivo:string;
     menjac:string;
     klasaAutomobila:string;
-    cena:string;
+    cenovnikId:string;
     predjenaKilometraza:number;
     planiranoZaPreci:string;
     cwd:boolean;
     brojSedistaZaDecu:number;
-    brojKomentara:number;
+    //brojKomentara:number;
+    iznajmljivacId: number;
+    iznajmljivacMail: string;
+
+    //zahtevi: Set<String>;
 }
