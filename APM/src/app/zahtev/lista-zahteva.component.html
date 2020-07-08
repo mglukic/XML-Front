@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-body">
+        <h2>Lista svih zahteva:</h2>
+
+        <div class='table-responsive'>
+            <table class='table'
+                   *ngIf='zahtevi'>
+                <thead>
+                    <tr>
+                        <th>Datum od</th>
+                        <th>Datum do</th>
+                        <!-- <th *ngFor='let v of vozila'>Vozila</th> -->
+                        <th>Stanje</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let ser of zahtevi'>
+                        <td>{{ser.datumOd}}</td>
+                        <td>{{ser.datumDo}}</td>
+                        <!-- <td *ngFor='let v of vozila'>{{v.marka}}</td> -->
+                        <td>{{ser.stanje}}</td>
+                        <td><button class="btn btn-info"
+                                    (click)='odobriZahtev(ser)'>Odobri</button></td>
+                        <td><button class="btn btn-info"
+                                    (click)='ponistiZahtev(ser)'>Ponisti</button></td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
