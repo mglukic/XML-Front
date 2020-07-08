@@ -9,6 +9,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Cenovnik } from '../cenovnik/Cenovnik';
 import { CenovnikService } from '../cenovnik/cenovnik.service';
 import { CenovnikComponent } from '../cenovnik/cenovnik.component';
+import { ZahtevSerivces } from '../zahtev/zahtev.services';
 
 
 
@@ -37,9 +38,9 @@ export class VoziloComponent implements OnInit{
 
   url : string;
 
+  mejlUlogovanog: string = "";
 
-
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router, private voziloService: VoziloSerivces, private cenovnikService: CenovnikService) {
+  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router, private voziloService: VoziloSerivces, private cenovnikService: CenovnikService, private zahtevService: ZahtevSerivces) {
     this.vozilo = new Vozilo();
     this.slika = new Slika();
 
@@ -53,6 +54,13 @@ export class VoziloComponent implements OnInit{
       }
     });
     console.log(this.cenovnici);
+
+    this.zahtevService.getMailUlogovanog().subscribe({
+      next: meil => {
+        this.mejlUlogovanog = meil;
+      }
+    })
+
   }
 
 
@@ -62,7 +70,8 @@ export class VoziloComponent implements OnInit{
     console.log("Pravi vozilo::" + this.vozilo)
 
     this.vozilo.iznajmljivacId = 1;
-    this.vozilo.iznajmljivacMail = "agent@gmail.com";
+    this.vozilo.iznajmljivacMail = this.mejlUlogovanog;
+    this.vozilo.pomId = 0;
 
     this.voziloService.sacuvajVozilo(this.vozilo).subscribe(vozilo => {
       this.vozilo = vozilo;
