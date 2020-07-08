@@ -18,6 +18,8 @@ import { CenovnikComponent } from './cenovnik/cenovnik.component';
 import { NoviCenovnikComponent } from './cenovnik/novi-cenovnik.component';
 import { CenovnikService } from './cenovnik/cenovnik.service';
 import { ListaCenovnikaComponent } from './cenovnik/lista-cenovnika.component';
+import { ListaZahtevaComponent } from './zahtev/lista-zahteva.component';
+import { ZahtevSerivces } from './zahtev/zahtev.services';
 //import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -29,7 +31,8 @@ import { ListaCenovnikaComponent } from './cenovnik/lista-cenovnika.component';
     IzvestajComponent,
     CenovnikComponent,
     NoviCenovnikComponent,
-    ListaCenovnikaComponent
+    ListaCenovnikaComponent,
+    ListaZahtevaComponent
   ],
   imports: [
     BrowserModule,
@@ -48,12 +51,15 @@ import { ListaCenovnikaComponent } from './cenovnik/lista-cenovnika.component';
       },
       { path: 'novi-cenovnik', component: NoviCenovnikComponent },
       { path: 'cenovnik/:id', component: CenovnikComponent },
-      { path: 'cenovnik', component: ListaCenovnikaComponent }
+      { path: 'cenovnik', component: ListaCenovnikaComponent },
+      { path: 'zahtevi', component: ListaZahtevaComponent },
+
 
     ]),
     FormsModule
   ],
-  providers: [VoziloSerivces, CenovnikService],
+  providers: [VoziloSerivces, CenovnikService, ZahtevSerivces],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
