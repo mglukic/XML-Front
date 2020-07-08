@@ -17,6 +17,7 @@ export class Vozilo{
     //brojKomentara:number;
     iznajmljivacId: number;
     iznajmljivacMail: string;
+    pomId: number;
 
     //zahtevi: Set<String>;
 }
