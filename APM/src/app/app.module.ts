@@ -20,6 +20,12 @@ import { CenovnikService } from './cenovnik/cenovnik.service';
 import { ListaCenovnikaComponent } from './cenovnik/lista-cenovnika.component';
 import { ListaZahtevaComponent } from './zahtev/lista-zahteva.component';
 import { ZahtevSerivces } from './zahtev/zahtev.services';
+import { ChatComponent } from './chat/chat.component';
+import { ListaMojihChatovaComponent } from './chat/lista-mojih-chatova.component';
+import { ChatService } from './chat/chat.service';
+import { AllReports } from './reports/allReports.component';
+import { ReportsService } from './reports/reports.service';
+
 //import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -32,7 +38,10 @@ import { ZahtevSerivces } from './zahtev/zahtev.services';
     CenovnikComponent,
     NoviCenovnikComponent,
     ListaCenovnikaComponent,
-    ListaZahtevaComponent
+    ListaZahtevaComponent,
+    ListaMojihChatovaComponent,
+    ChatComponent, 
+    AllReports
   ],
   imports: [
     BrowserModule,
@@ -53,12 +62,15 @@ import { ZahtevSerivces } from './zahtev/zahtev.services';
       { path: 'cenovnik/:id', component: CenovnikComponent },
       { path: 'cenovnik', component: ListaCenovnikaComponent },
       { path: 'zahtevi', component: ListaZahtevaComponent },
+      { path: 'chat/:id', component: ChatComponent },
+      { path: 'chat', component: ListaMojihChatovaComponent },
+      { path: 'allReports', component: AllReports }
 
 
     ]),
     FormsModule
   ],
-  providers: [VoziloSerivces, CenovnikService, ZahtevSerivces],
+  providers: [VoziloSerivces, CenovnikService, ZahtevSerivces, ChatService, ReportsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,35 @@
+<div>
+    <h1>Istorija dopisivanja:</h1>
+</div>
+<div class='table-responsive'>
+    <table class='table'
+           *ngIf='poruke && poruke.length'>
+        <thead>
+            <tr><th>Posiljalac </th>
+                <th>Vreme poruke</th>
+                <th>Sadrzaj poruke</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let poruka of poruke'>
+                <td>{{poruka.senderEmail}}</td>
+                <td>{{poruka.timestamp}}</td>
+                <td>{{poruka.content}}</td>
+
+            </tr>
+        </tbody>
+    </table> 
+</div>
+
+<div>
+    <h3>Nova poruka:</h3>
+</div>
+<div>
+    <input type="text"
+           name="TekstPoruke"
+           #TekstPoruke="ngModel"
+           [(ngModel)]="tekstPoruke"
+           style="width:350px; height:50px" />
+    <button class="btn btn-info"
+            (click)='posaljiPoruku()'>Odgovori</button>
+</div>

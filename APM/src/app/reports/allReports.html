@@ -1,0 +1,20 @@
+<h2>Moji izvestaji</h2>
+<div class='table-responsive'>
+    <table class='table'
+           *ngIf='izvestaji && izvestaji.length'>
+        <thead>
+            <tr>
+                <th>Id vozila</th>
+                <th>Predjena kilometraza</th>
+                <th>Dodatni komentar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let izvestaj of izvestaji'>
+                <td>{{izvestaj.voziloId}}</td>
+                <td>{{izvestaj.predjenaKilometraza}}</td>
+                <td>{{izvestaj.tekstIzvestaja}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

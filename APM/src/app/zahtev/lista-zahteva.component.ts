@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Zahtev } from './Zahtev';
 import { ZahtevSerivces } from './zahtev.services';
 import { Vozilo } from '../vozilo/Vozilo';
+import { Chat } from '../chat/Chat';
+import { ChatService } from '../chat/chat.service';
 
 @Component({
   selector: 'pm-lista-zahteva',
@@ -12,30 +14,19 @@ export class ListaZahtevaComponent implements OnInit {
 
   zahtevi: Zahtev[] = [];
   mejlUlogovanog: string = "";
+  zahtev:Zahtev;
 
   vozila: Vozilo[] = [];
+  podnosilacEmail:string;
+  chat:Chat;
 
-  constructor(private zahtevServices: ZahtevSerivces) { }
+  constructor(private zahtevServices: ZahtevSerivces, private chatService: ChatService) {
+    this.zahtev=new Zahtev();
+   this.chat=new Chat();
+   }
 
 
   ngOnInit() {
-    // this.zahtevServices.getMailUlogovanog().subscribe({
-    //   next: mejl => {
-    //     this.mejlUlogovanog = mejl;
-    //     console.log('Mejl ulogovanog je: ', this.mejlUlogovanog)
-
-    //     this.zahtevServices.vratiZahtevePoKorisnikuMail(this.mejlUlogovanog).subscribe({
-    //       next: zahtevi => {
-    //         this.zahtevi = zahtevi;
-    //         for (let z of this.zahtevi) {
-    //           for (let v of z.vozila) {
-    //             this.vozila.push(v);
-    //           }
-    //         }
-    //       }
-    //     })
-    //   }
-    // })
 
     this.zahtevServices.vratiZahtevePoKorisnikuMail().subscribe({
       next: zahtevi => {
@@ -50,15 +41,27 @@ export class ListaZahtevaComponent implements OnInit {
       error: data => {
         console.log('U erroru: data: .. ', data)
         this.zahtevi = data;
+
+    
+
+    this.zahtevServices.getMailUlogovanog().subscribe({
+      next: mejl => {
+        this.mejlUlogovanog = mejl;
+        
+
       }
       
     })
 
   }
 
+
   odobriZahtev(zahtev: Zahtev) {
     //this.kreirajChatZaZahtev(zahtev);
     this.zahtevServices.odobriZahtev(zahtev).subscribe();  
+
+    this.kreirajChatZaZahtev(zahtev);
+
   }
 
 
@@ -66,6 +69,11 @@ export class ListaZahtevaComponent implements OnInit {
     this.zahtevServices.odbaciZahtev(zahtev).subscribe();
   }
 
+  kreirajChatZaZahtev(zahtev: Zahtev) {
+
+  
+        this.chatService.kreirajChat(zahtev.podnosilac).subscribe();
+  }
 
   // kreirajChatZaZahtev(zahtev: ZahtevRezervacije) {
 

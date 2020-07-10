@@ -8,6 +8,10 @@ import { Zahtev } from "./Zahtev";
 
 @Injectable()
 export class ZahtevSerivces {
+    
+    public getPodnosilacEmail(idPodnosilac:number): Observable<string> {
+        return this.http.get<string>("/api/zahtev/getByPodnosilacEmail/" + idPodnosilac);
+    }
 
     constructor(private http: HttpClient) {
     }
