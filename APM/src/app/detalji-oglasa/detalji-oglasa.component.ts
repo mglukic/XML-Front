@@ -6,6 +6,8 @@ import { Komentar } from './Kometar';
 import { Zauzece } from './Zauzece';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { ImageResponse } from './ImageResponse';
+import { CenovnikService } from '../cenovnik/cenovnik.service';
+import { Cenovnik } from '../cenovnik/Cenovnik';
 
 @Component({
   templateUrl: './detalji-oglasa.html',
@@ -33,6 +35,8 @@ export class DetaljiOglasaComponent implements OnInit {
   imageName: any;
   imageResponse: ImageResponse[] = [];
 
+  cenovnikTrenutnog: Cenovnik;
+
   get tekstKomentar(): string {
     return this._tekstKomentar;
   }
@@ -58,10 +62,11 @@ export class DetaljiOglasaComponent implements OnInit {
     this._zauzmiDo = value;
   }
 
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router, private voziloService: VoziloSerivces) {
+  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router, private voziloService: VoziloSerivces, private cenovnikService: CenovnikService) {
     this.komentr = new Komentar();
     this.vozilo = new Vozilo();
     this.zauzece = new Zauzece();
+    this.cenovnikTrenutnog = new Cenovnik();
   }
 
 
@@ -82,7 +87,14 @@ export class DetaljiOglasaComponent implements OnInit {
 
   getProduct(id: number) {
     this.voziloService.vratiVozilo(id).subscribe(
-      vozilo => this.vozilo = vozilo,
+      vozilo => { 
+        this.vozilo = vozilo
+        this.cenovnikService.vratiCenovnikPoNazivu(this.vozilo.cenovnikId).subscribe({
+          next: cenovnik => {
+            this.cenovnikTrenutnog = cenovnik;
+          }
+        })
+      },
       error => this.errorMessage = <any>error
     );
 
