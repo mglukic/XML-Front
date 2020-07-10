@@ -41,8 +41,8 @@ export class ListaZahtevaComponent implements OnInit {
       error: data => {
         console.log('U erroru: data: .. ', data)
         this.zahtevi = data;
-
-    
+      }
+    })
 
     this.zahtevServices.getMailUlogovanog().subscribe({
       next: mejl => {
