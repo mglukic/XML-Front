@@ -12,8 +12,8 @@ export class ZahtevSerivces {
     constructor(private http: HttpClient) {
     }
 
-    public vratiZahtevePoKorisnikuMail(mail: string): Observable<Zahtev[]> {
-        return this.http.get<Zahtev[]>("/api/zahtev/getByIzdavacMail/" + mail);
+    public vratiZahtevePoKorisnikuMail(): Observable<Zahtev[]> {
+        return this.http.get<Zahtev[]>("http://localhost:8080/car/zahtev/izdavalacMailAG/");
     }
 
     // public odobriZahtev(zahtev: ZahtevRezervacije): Observable<ZahtevRezervacije> {
@@ -24,8 +24,20 @@ export class ZahtevSerivces {
     // }
 
     public getMailUlogovanog(): Observable<string> {
-        return this.http.get<string>("/api/zahtev/getMejlAgenta");
+        //const options = { responseType: 'text', headers };
+        //return this.http.get(url, options);
+        return this.http.get<string>("http://localhost:8080/user/getMailAgent");
     }
+
+    public odobriZahtev(zahtev: Zahtev): Observable<string> {
+        return this.http.get<string>("http://localhost:8080/car/odobriAG/" + zahtev.id);
+    }
+
+    public odbaciZahtev(zahtev: Zahtev): Observable<string> {
+        return this.http.get<string>("http://localhost:8080/car/odbaciAG/" + zahtev.id);
+    }
+
+
 
 
 
