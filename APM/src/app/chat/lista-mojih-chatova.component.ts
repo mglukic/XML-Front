@@ -32,7 +32,14 @@ export class ListaMojihChatovaComponent implements OnInit {
     this.zahtevService.getMailUlogovanog().subscribe({
       next: emailKorisnika => {
         this.emailKorisnika = emailKorisnika;
-        this.chatService.vratiChatovePoKorisniku(this.emailKorisnika).subscribe({
+      
+
+      }
+
+
+    });
+
+      this.chatService.vratiChatovePoKorisniku(this.emailKorisnika).subscribe({
           next: chats => {
             this.myChats = chats;
 
@@ -52,11 +59,6 @@ export class ListaMojihChatovaComponent implements OnInit {
           }
          
         });
-
-      }
-
-
-    });
   }
 
 }

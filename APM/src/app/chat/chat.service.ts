@@ -29,8 +29,8 @@ export class ChatService{
     }
 
     //poziva se nakon odobrene rezervacije u listi zahteva za mene
-    public kreirajChat(chat:Chat): Observable<Chat> {
-        return this.http.post<Chat>("/api/chat/",chat);
+    public kreirajChat(chat:number): Observable<Chat> {
+        return this.http.post<Chat>("/api/chat/"+ chat,chat);
     }
     
 
