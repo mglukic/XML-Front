@@ -20,9 +20,9 @@
                         <td>{{ser.datumDo}}</td>
                         <!-- <td *ngFor='let v of vozila'>{{v.marka}}</td> -->
                         <td>{{ser.stanje}}</td>
-                        <td><button class="btn btn-info"
+                        <td *ngIf="ser.stanje == 'PENDING'"><button class="btn btn-info"
                                     (click)='odobriZahtev(ser)'>Odobri</button></td>
-                        <td><button class="btn btn-info"
+                        <td *ngIf="ser.stanje == 'PENDING'"><button class="btn btn-info"
                                     (click)='ponistiZahtev(ser)'>Ponisti</button></td>
 
 
