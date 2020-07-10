@@ -14,20 +14,26 @@ export class ListaZahtevaComponent implements OnInit {
 
   zahtevi: Zahtev[] = [];
   mejlUlogovanog: string = "";
+  zahtev:Zahtev;
 
   vozila: Vozilo[] = [];
   podnosilacEmail:string;
+  chat:Chat;
 
-  constructor(private zahtevServices: ZahtevSerivces, private chatService: ChatService) { }
+  constructor(private zahtevServices: ZahtevSerivces, private chatService: ChatService) {
+    this.zahtev=new Zahtev();
+   this.chat=new Chat();
+   }
 
 
   ngOnInit() {
+    
+
     this.zahtevServices.getMailUlogovanog().subscribe({
       next: mejl => {
         this.mejlUlogovanog = mejl;
-        console.log('Mejl ulogovanog je: ', this.mejlUlogovanog)
-
-        this.zahtevServices.vratiZahtevePoKorisnikuMail(this.mejlUlogovanog).subscribe({
+        
+       /* this.zahtevServices.vratiZahtevePoKorisnikuMail(this.mejlUlogovanog).subscribe({
           next: zahtevi => {
             this.zahtevi = zahtevi;
             for (let z of this.zahtevi) {
@@ -36,9 +42,25 @@ export class ListaZahtevaComponent implements OnInit {
               }
             }
           }
-        })
+        })*/
       }
     })
+    console.log('Mejl ulogovanog je: ', this.mejlUlogovanog)
+
+    this.zahtev.id=1;
+  this.zahtev.datumDo=null;
+  this.zahtev.datumOd=null;
+  this.zahtev.stanje="PENDING";
+  this.zahtev.vozila=[];
+  this.zahtev.vremeOdobrenja=null;
+  this.zahtev.vremeKreiranja=null;
+  this.zahtev.izdavacMail=this.mejlUlogovanog;
+  this.zahtev.podnosilac=1;
+  this.zahtev.izdavac=2;
+  console.log('Zahtev je: ', this.zahtev);
+  this.zahtevi.push(this.zahtev);
+  console.log('Zahtevi je: ', this.zahtevi);
+  
   }
 
   odobriZahtev(ser) {
@@ -52,18 +74,8 @@ export class ListaZahtevaComponent implements OnInit {
 
   kreirajChatZaZahtev(zahtev: Zahtev) {
 
-    this.zahtevServices.getPodnosilacEmail(zahtev.podnosilac).subscribe({
-      next: podnosilacEmail => {
-        this.podnosilacEmail = podnosilacEmail;
-
-        let chat = new Chat();
-        chat.user2 = this.mejlUlogovanog;
-        chat.user1 = this.podnosilacEmail;
-        console.log(chat);
-        this.chatService.kreirajChat(chat).subscribe();
-        
-      }
-    });
+  
+        this.chatService.kreirajChat(zahtev.podnosilac).subscribe();
   }
 
 }
