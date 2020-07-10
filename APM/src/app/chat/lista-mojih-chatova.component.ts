@@ -17,12 +17,12 @@ export class ListaMojihChatovaComponent implements OnInit {
 
   myChats: Chat[] = [];
   myChatsPrikaz: ChatPrikazLista[] = [];
- // korisnik: Korisnik;
- emailKorisnika:string;
+  // korisnik: Korisnik;
+  emailKorisnika: string;
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private chatService: ChatService, 
-     private zahtevService: ZahtevSerivces) {
+  constructor(private route: ActivatedRoute, private router: Router, private chatService: ChatService,
+    private zahtevService: ZahtevSerivces) {
 
 
   }
@@ -48,9 +48,9 @@ export class ListaMojihChatovaComponent implements OnInit {
               let c = new ChatPrikazLista(element.id, userEmail);
               this.myChatsPrikaz.push(c);
             })
-             console.log(this.myChatsPrikaz);
+            console.log(this.myChatsPrikaz);
           }
-         
+
         });
 
       }

@@ -23,6 +23,9 @@ import { ZahtevSerivces } from './zahtev/zahtev.services';
 import { ChatComponent } from './chat/chat.component';
 import { ListaMojihChatovaComponent } from './chat/lista-mojih-chatova.component';
 import { ChatService } from './chat/chat.service';
+import { AllReports } from './reports/allReports.component';
+import { ReportsService } from './reports/reports.service';
+
 //import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -37,7 +40,8 @@ import { ChatService } from './chat/chat.service';
     ListaCenovnikaComponent,
     ListaZahtevaComponent,
     ListaMojihChatovaComponent,
-    ChatComponent
+    ChatComponent, 
+    AllReports
   ],
   imports: [
     BrowserModule,
@@ -59,13 +63,14 @@ import { ChatService } from './chat/chat.service';
       { path: 'cenovnik', component: ListaCenovnikaComponent },
       { path: 'zahtevi', component: ListaZahtevaComponent },
       { path: 'chat/:id', component: ChatComponent },
-      { path: 'chat', component: ListaMojihChatovaComponent }
+      { path: 'chat', component: ListaMojihChatovaComponent },
+      { path: 'allReports', component: AllReports }
 
 
     ]),
     FormsModule
   ],
-  providers: [VoziloSerivces, CenovnikService, ZahtevSerivces, ChatService],
+  providers: [VoziloSerivces, CenovnikService, ZahtevSerivces, ChatService, ReportsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
