@@ -56,4 +56,8 @@ export class VoziloSerivces {
   public getImages(idVozila: number): Observable<Blob[]> {
     return this.http.get<Blob[]>("/api/vozilo/getImages/" + idVozila);
   }
+
+  public getOcena(idVozila: number): Observable<number> {
+    return this.http.get<number>("/api/vozilo/getOcenaByIdVozila/" + idVozila);
+  }
 }
