@@ -36,6 +36,7 @@ export class DetaljiOglasaComponent implements OnInit {
   imageResponse: ImageResponse[] = [];
 
   cenovnikTrenutnog: Cenovnik;
+  ocenaVozila: number;
 
   get tekstKomentar(): string {
     return this._tekstKomentar;
@@ -77,6 +78,13 @@ export class DetaljiOglasaComponent implements OnInit {
       this.getProduct(this.id);
 
     }
+
+    this.voziloService.getOcena(this.id).subscribe({
+      next: ocenaVozila => {
+        this.ocenaVozila = ocenaVozila;
+        console.log('Dobijena prosecna ocena: ', this.ocenaVozila);
+      }
+    });
 
   }
 
