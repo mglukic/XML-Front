@@ -70,7 +70,7 @@ export class VoziloComponent implements OnInit{
     console.log("Pravi vozilo::" + this.vozilo)
 
     this.vozilo.iznajmljivacId = 1;
-    this.vozilo.iznajmljivacMail = this.mejlUlogovanog;
+    this.vozilo.iznajmljivacMail ="";
     this.vozilo.pomId = 0;
 
     this.voziloService.sacuvajVozilo(this.vozilo).subscribe(vozilo => {

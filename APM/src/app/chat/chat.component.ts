@@ -48,26 +48,23 @@ export class ChatComponent implements OnInit {
     }
 
     getProduct(id: number) {
-        this.chatService.vratiChat(id).subscribe(
+        this.chatService.vratiChatSaMicro(id).subscribe(
             chat => {this.chat = chat;
-                this.chatService.vratiPorukePoCetu(this.chat.id).subscribe({
+                this.chatService.vratiPorukeIzMikroservisa(id).subscribe({
                     next: poruke => {
                       this.poruke = poruke;
                     }
                   });
-            },
-            error => this.errorMessage = <any>error
-        );
+          },
+           error => this.errorMessage = <any>error
+       );
     }
 
     posaljiPoruku() {
 
-        this.novaPoruka.content=this.tekstPoruke;
-        this.novaPoruka.senderEmail=this.emailKorisnika;
-        this.novaPoruka.timestamp = new Date();
-        this.novaPoruka.chatId = this.chat.id;
+       
 
-        this.chatService.posaljiPorukuNaCet(this.novaPoruka).subscribe({
+        this.chatService.posaljiPorukuNaCetMico(this.id,this.tekstPoruke,this.chat.user2).subscribe({
             next: povratna=>{
                 let poruka=povratna;
                 if(poruka!=null){

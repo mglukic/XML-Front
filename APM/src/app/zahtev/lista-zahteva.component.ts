@@ -4,6 +4,7 @@ import { ZahtevSerivces } from './zahtev.services';
 import { Vozilo } from '../vozilo/Vozilo';
 import { Chat } from '../chat/Chat';
 import { ChatService } from '../chat/chat.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'pm-lista-zahteva',
@@ -20,7 +21,8 @@ export class ListaZahtevaComponent implements OnInit {
   podnosilacEmail:string;
   chat:Chat;
 
-  constructor(private zahtevServices: ZahtevSerivces, private chatService: ChatService) {
+
+  constructor(private httpClient: HttpClient,private zahtevServices: ZahtevSerivces, private chatService: ChatService) {
     this.zahtev=new Zahtev();
    this.chat=new Chat();
    }
@@ -74,9 +76,27 @@ export class ListaZahtevaComponent implements OnInit {
 
   kreirajChatZaZahtev(zahtev: Zahtev) {
 
+    let chat1=new Chat();
+
   
-        this.chatService.kreirajChat(zahtev.podnosilac).subscribe();
-  }
+  
+        this.chatService.kreirajChat(zahtev.podnosilac).subscribe({
+          next: chat => {
+            this.chat = chat;
+            
+            const params = new HttpParams()
+            .set('user1', this.chat.user1)
+            .set('user2', this.chat.user2);
+                  this.httpClient.get<Chat>('http://localhost:8080/user/postChat/'+this.chat.user1 + "/"+this.chat.user2)
+          
+                  .subscribe();
+             
+            }
+    
+          
+        });
+
 
 }
 
+}
