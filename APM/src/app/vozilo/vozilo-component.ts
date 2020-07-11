@@ -77,7 +77,9 @@ export class VoziloComponent implements OnInit{
     console.log("Pravi vozilo::" + this.vozilo)
 
     this.vozilo.iznajmljivacId = 1;
+
     this.vozilo.iznajmljivacMail = "agent@gmail.com";
+
     this.vozilo.pomId = 0;
     console.log("Pravi vozilo::" + this.vozilo)
     console.log("Mejl je::" + this.vozilo.iznajmljivacMail)

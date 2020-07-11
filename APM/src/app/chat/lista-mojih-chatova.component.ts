@@ -4,6 +4,7 @@ import { Chat } from './Chat';
 import { ChatPrikazLista } from './ChatPrikazLista';
 import { ChatService } from './chat.service';
 import { ZahtevSerivces } from '../zahtev/zahtev.services';
+import { HttpClient } from '@angular/common/http';
 //import { Korisnik } from 'src/app/login/Korisnik';
 //import { KorisnikService } from 'src/app/admin/lista-korisnika/korisnici.services';
 
@@ -21,7 +22,7 @@ export class ListaMojihChatovaComponent implements OnInit {
   emailKorisnika: string;
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private chatService: ChatService,
+  constructor(private httpClient: HttpClient,private route: ActivatedRoute, private router: Router, private chatService: ChatService,
     private zahtevService: ZahtevSerivces) {
 
 
@@ -29,36 +30,33 @@ export class ListaMojihChatovaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.zahtevService.getMailUlogovanog().subscribe({
-      next: emailKorisnika => {
-        this.emailKorisnika = emailKorisnika;
-      
-
-      }
-
-
-    });
-
-      this.chatService.vratiChatovePoKorisniku(this.emailKorisnika).subscribe({
+  
+        
+        this.chatService.VratiChat().subscribe({
           next: chats => {
             this.myChats = chats;
-
+    
             this.myChats.forEach(element => {
               let userEmail;
-
-              if (element.user1.valueOf() == this.emailKorisnika.valueOf()) {
+    
+             /* if (element.user1.valueOf() == this.myChats.) {
                 userEmail = element.user2;
               } else {
                 userEmail = element.user1;
-              }
-
-              let c = new ChatPrikazLista(element.id, userEmail);
+              }*/
+    
+              let c = new ChatPrikazLista(element.id, element.user2);
               this.myChatsPrikaz.push(c);
             })
             console.log(this.myChatsPrikaz);
           }
-
+    
         });
+
+ 
+
+    
+
   }
 
 }
