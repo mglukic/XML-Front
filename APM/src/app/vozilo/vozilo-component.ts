@@ -38,7 +38,7 @@ export class VoziloComponent implements OnInit{
 
   url : string;
 
-  mejlUlogovanog: string = "";
+  mejlUlogovanog: string = '';
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router, private voziloService: VoziloSerivces, private cenovnikService: CenovnikService, private zahtevService: ZahtevSerivces) {
     this.vozilo = new Vozilo();
@@ -55,11 +55,18 @@ export class VoziloComponent implements OnInit{
     });
     console.log(this.cenovnici);
 
-    this.zahtevService.getMailUlogovanog().subscribe({
-      next: meil => {
-        this.mejlUlogovanog = meil;
-      }
-    })
+//     this.zahtevService.getMailUlogovanog().subscribe({
+//       next: meil => {
+//         /*this.mejlUlogovanog = this.mejlUlogovanog.concat(meil)
+
+//         console.log("U next: MAIL::" + meil);
+//         console.log("U next:" + this.mejlUlogovanog);
+// */
+//         this.mejlUlogovanog = meil;
+//         console.log("U next: MAIL::" + meil);
+//         console.log("U next:" + this.mejlUlogovanog);
+//       }
+//     })
 
   }
 
@@ -70,8 +77,13 @@ export class VoziloComponent implements OnInit{
     console.log("Pravi vozilo::" + this.vozilo)
 
     this.vozilo.iznajmljivacId = 1;
-    this.vozilo.iznajmljivacMail ="";
+
+    this.vozilo.iznajmljivacMail = "agent@gmail.com";
+
     this.vozilo.pomId = 0;
+    console.log("Pravi vozilo::" + this.vozilo)
+    console.log("Mejl je::" + this.vozilo.iznajmljivacMail)
+    console.log("Mejl je::" + this.mejlUlogovanog)
 
     this.voziloService.sacuvajVozilo(this.vozilo).subscribe(vozilo => {
       this.vozilo = vozilo;

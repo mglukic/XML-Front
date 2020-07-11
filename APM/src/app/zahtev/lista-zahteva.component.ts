@@ -29,49 +29,46 @@ export class ListaZahtevaComponent implements OnInit {
 
 
   ngOnInit() {
-    
+
+    this.zahtevServices.vratiZahtevePoKorisnikuMail().subscribe({
+      next: zahtevi => {
+        console.log('usao u next!');
+        this.zahtevi = zahtevi;
+        for (let z of this.zahtevi) {
+          for (let v of z.vozila) {
+            this.vozila.push(v);
+          }
+        }
+      }, 
+      error: data => {
+        console.log('U erroru: data: .. ', data)
+        this.zahtevi = data;
+      }
+    })
 
     this.zahtevServices.getMailUlogovanog().subscribe({
       next: mejl => {
         this.mejlUlogovanog = mejl;
         
-       /* this.zahtevServices.vratiZahtevePoKorisnikuMail(this.mejlUlogovanog).subscribe({
-          next: zahtevi => {
-            this.zahtevi = zahtevi;
-            for (let z of this.zahtevi) {
-              for (let v of z.vozila) {
-                this.vozila.push(v);
-              }
-            }
-          }
-        })*/
+
       }
+      
     })
-    console.log('Mejl ulogovanog je: ', this.mejlUlogovanog)
 
-    this.zahtev.id=1;
-  this.zahtev.datumDo=null;
-  this.zahtev.datumOd=null;
-  this.zahtev.stanje="PENDING";
-  this.zahtev.vozila=[];
-  this.zahtev.vremeOdobrenja=null;
-  this.zahtev.vremeKreiranja=null;
-  this.zahtev.izdavacMail=this.mejlUlogovanog;
-  this.zahtev.podnosilac=1;
-  this.zahtev.izdavac=2;
-  console.log('Zahtev je: ', this.zahtev);
-  this.zahtevi.push(this.zahtev);
-  console.log('Zahtevi je: ', this.zahtevi);
-  
   }
 
-  odobriZahtev(ser) {
 
-    this.kreirajChatZaZahtev(ser);
+  odobriZahtev(zahtev: Zahtev) {
+    //this.kreirajChatZaZahtev(zahtev);
+    this.zahtevServices.odobriZahtev(zahtev).subscribe();  
+
+    this.kreirajChatZaZahtev(zahtev);
+
   }
 
-  ponistiZahtev(ser) {
 
+  ponistiZahtev(zahtev: Zahtev) {
+    this.zahtevServices.odbaciZahtev(zahtev).subscribe();
   }
 
   kreirajChatZaZahtev(zahtev: Zahtev) {
@@ -95,6 +92,28 @@ export class ListaZahtevaComponent implements OnInit {
     
           
         });
+
+
+  // kreirajChatZaZahtev(zahtev: ZahtevRezervacije) {
+
+  //   this.login.getKorisnikeSve().subscribe({
+  //     next: korisnici => {
+  //       this.korisnici = korisnici;
+
+  //       for (let i = 0; i < this.korisnici.length; i++) {
+  //         if (this.korisnici[i].id == zahtev.podnosilac) {
+  //           this.podnosilac = this.korisnici[i];
+  //         }
+  //       }
+  //       let chat = new Chat();
+  //       chat.user2 = zahtev.izdavacMail;
+  //       chat.user1 = this.podnosilac.email;
+  //       console.log(chat);
+  //       this.chatService.kreirajChat(chat).subscribe();
+        
+  //     }
+  //   });
+  // }
 
 
 }

@@ -40,7 +40,7 @@ export class VoziloSerivces {
   }
 
   public dodajKomentar(komentar: Komentar) {
-    return this.http.post<Vozilo>("/api/vozilo/dodajKomentar", komentar);
+    return this.http.post<Komentar>("/api/vozilo/dodajKomentar", komentar);
   }
   public vratiKomentareVozila(idVozila: number): Observable<Komentar[]> {
     return this.http.get<Komentar[]>("/api/vozilo/listaVozila/vratiKomentare/" + idVozila);
@@ -55,5 +55,9 @@ export class VoziloSerivces {
 
   public getImages(idVozila: number): Observable<Blob[]> {
     return this.http.get<Blob[]>("/api/vozilo/getImages/" + idVozila);
+  }
+
+  public getOcena(idVozila: number): Observable<number> {
+    return this.http.get<number>("/api/vozilo/getOcenaByIdVozila/" + idVozila);
   }
 }

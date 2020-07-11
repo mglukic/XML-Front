@@ -18,6 +18,10 @@ export class CenovnikService{
         return this.http.get<Cenovnik>("/api/cenovnik/"+id);
     }
 
+    public vratiCenovnikPoNazivu(naziv: string):Observable<Cenovnik>{
+        return this.http.get<Cenovnik>("/api/cenovnik/poNazivu/" + naziv);
+    }
+
     public obrisiCenovnik(id:number){
         return this.http.delete("/api/cenovnik/"+id);
     }
